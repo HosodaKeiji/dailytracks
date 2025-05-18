@@ -20,6 +20,5 @@ from accounts.views import LoginView, SignupView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/login/", LoginView.as_view(), name = "login"),
-    path("api/signup/", SignupView.as_view(), name = "signp"),
+    path('api/', include('accounts.urls')),  # accountsのルーティングを/api/配下に
 ]
