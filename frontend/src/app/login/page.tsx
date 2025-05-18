@@ -34,11 +34,11 @@ export default function LoginPage() {
         <div className="flex items-center justify-center min-h-screen bg-white">
         <form
             onSubmit={handleLogin}
-            className="bg-white shadow-md rounded-lg p-8 w-full max-w-md border border-blue-900"
+            className="bg-white shadow-md rounded-lg p-8 w-full max-w-md border border-[#00004d]"
         >
-            <h1 className="text-3xl font-bold mb-6 text-red-600 text-center">ログイン</h1>
+            <h1 className="text-3xl font-bold mb-6 text-[#ff0000] text-center">ログイン</h1>
 
-            <label className="block mb-2 text-sm font-semibold text-blue-900" htmlFor="username">
+            <label className="block mb-2 text-sm font-semibold text-[#00004d]" htmlFor="username">
             ユーザー名
             </label>
             <input
@@ -47,11 +47,11 @@ export default function LoginPage() {
             placeholder="ユーザー名を入力"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border border-blue-900 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full px-4 py-2 mb-4 border border-[#00004d] rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             required
             />
 
-            <label className="block mb-2 text-sm font-semibold text-blue-900" htmlFor="password">
+            <label className="block mb-2 text-sm font-semibold text-[#00004d]" htmlFor="password">
             パスワード
             </label>
             <input
@@ -60,7 +60,7 @@ export default function LoginPage() {
             placeholder="パスワードを入力"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 mb-6 border border-blue-900 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full px-4 py-2 mb-6 border border[#00004d] rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             required
             />
 
