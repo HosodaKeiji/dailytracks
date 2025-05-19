@@ -1,6 +1,10 @@
 'use client';
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function SettingsPage() {
+    const router = useRouter();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState<string | null>(null);
@@ -97,6 +101,16 @@ export default function SettingsPage() {
                     パスワードを変更
                 </button>
             </form>
+
+            {/* ホームに戻るボタン */}
+            <div className="mt-10">
+                <button
+                    onClick={() => router.push('/home')}
+                    className="text-[#00004d] underline hover:text-red-700 transition"
+                >
+                    ホームに戻る
+                </button>
+            </div>
         </div>
     );
 }
