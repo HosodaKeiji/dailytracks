@@ -24,9 +24,11 @@ export default function HomePage() {
     }, []);
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <h1>{username ? `${username} さんの日々の軌跡` : "ホーム"}</h1>
-            <p>ようこそ、ホーム画面へ。</p>
+        <div className="p-8 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#00004d] mb-4">
+                {username ? `${username} さんの日々の軌跡` : "ホーム"}
+            </h1>
+            <p className="text-lg text-gray-600">あなたの足跡をここに残しましょう</p>
         </div>
     );
 }
