@@ -30,3 +30,9 @@ class SignupSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class UsernameChangeSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=150)
+
+class PasswordChangeSerializer(serializers.Serializer):
+    password = serializers.CharField(write_only=True)
