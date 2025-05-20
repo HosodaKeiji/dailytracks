@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import LoginView, SignupView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('accounts.urls')),  # accountsのルーティングを/api/配下に
+    path('api/', include('accounts.urls')),  # accountsのルーティングを/api/
+    path('api/', include('dailytracks.urls')),
 ]
