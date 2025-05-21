@@ -38,6 +38,30 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                         >
                             ホーム
                         </Link>
+                        <Link
+                            href="/diary"
+                            className="block py-2 px-3 rounded-md hover:bg-[#ff0000] hover:text-white transition"
+                        >
+                            日記
+                        </Link>
+                        <Link
+                            href="/pdca_report"
+                            className="block py-2 px-3 rounded-md hover:bg-[#ff0000] hover:text-white transition"
+                        >
+                            PDCAレポート
+                        </Link>
+                        <Link
+                            href="/one_on_one"
+                            className="block py-2 px-3 rounded-md hover:bg-[#ff0000] hover:text-white transition"
+                        >
+                            1on1
+                        </Link>
+                        <Link
+                            href="/goal_setting"
+                            className="block py-2 px-3 rounded-md hover:bg-[#ff0000] hover:text-white transition"
+                        >
+                            目標設定
+                        </Link>
                     </nav>
                 </div>
 
