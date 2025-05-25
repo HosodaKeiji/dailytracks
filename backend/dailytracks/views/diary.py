@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from dailytracks.serializers.diary import DiarySerializer
+from dailytracks.models.diary import Diary
 
 class DiaryCreateView(APIView):
-    Permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = DiarySerializer(data = request.data)
@@ -14,3 +15,11 @@ class DiaryCreateView(APIView):
             serializer.save(user = request.user) #userはリクエストユーザー
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    
+class DiaryListView(APIView):
+    Permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        diaries = Diary.objects.filter(user = request.user).order_by("-created_at")
+        serializer = DiarySerializer(diaries, many = True)
+        return Response(serializer.data)
