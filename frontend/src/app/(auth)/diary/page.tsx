@@ -10,6 +10,14 @@ type Diary = {
     created_at: string;
 };
 
+const moodLabels: Record<number, string> = {
+        1: "絶好調",
+        2: "良好",
+        3: "普通",
+        4: "不調",
+        5: "絶不調",
+    };
+
 export default function SettingsPage() {
     const logged_user = useGetLoggedUser();
     const router = useRouter()
@@ -45,15 +53,6 @@ export default function SettingsPage() {
 
         fetchDiaries();
     }, [token]);
-    console.log(diaries);
-
-    const moodLabels: Record<number, string> = {
-        1: "絶好調",
-        2: "良好",
-        3: "普通",
-        4: "不調",
-        5: "絶不調",
-    };
 
     return (
         <div className="p-8 max-w-5xl mx-auto">

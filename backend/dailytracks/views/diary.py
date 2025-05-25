@@ -23,3 +23,13 @@ class DiaryListView(APIView):
         diaries = Diary.objects.filter(user = request.user).order_by("-created_at")
         serializer = DiarySerializer(diaries, many = True)
         return Response(serializer.data)
+
+class DiaryLatestView(APIView):
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        latest_diary = Diary.objects.filter(user = request.user).order_by("-created_at").first()
+        if latest_diary:
+            serializer = DiarySerializer(latest_diary)
+            return Response(serializer.data)
+        return Response({"Error": "日記が見つかりませんでした"}, status = 404)
