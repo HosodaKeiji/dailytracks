@@ -14,7 +14,7 @@ export function useGetLoggedUser() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        fetch("http://localhost:8000/api/user/me/", {
+        fetch("http://localhost:8000/dailytracks/user/me/", {
             headers: {
                 "Authorization": `Token ${token}`,
             },
@@ -25,6 +25,7 @@ export function useGetLoggedUser() {
             })
             .catch((err) => console.error("ユーザー取得エラー:", err));
     }, []);
+    console.log(user);
 
     return user;
 }

@@ -12,7 +12,7 @@ export default function SignupPage() {
         e.preventDefault();
         setError('');
 
-        const res = await fetch('http://localhost:8000/api/signup/', {
+        const res = await fetch('http://localhost:8000/accounts/signup/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),

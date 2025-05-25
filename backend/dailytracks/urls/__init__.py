@@ -3,4 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('user/', include('dailytracks.urls.user')),
+    path('diary/', include('dailytracks.urls.diary')),
 ]

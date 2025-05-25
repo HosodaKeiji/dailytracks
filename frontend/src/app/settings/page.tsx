@@ -16,9 +16,12 @@ export default function SettingsPage() {
 
     const handleUsernameChange = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!token) return;
+        if (!token) {
+            alert("ログイン情報がありません");
+            return;
+        }
         
-        const res = await fetch("http://localhost:8000/api/change-username/", {
+        const res = await fetch("http://localhost:8000/accounts/change-username/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -41,7 +44,7 @@ export default function SettingsPage() {
         e.preventDefault();
         if (!token) return;
 
-        const res = await fetch('http://localhost:8000/api/change-password/', {
+        const res = await fetch('http://localhost:8000/accounts/change-password/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
