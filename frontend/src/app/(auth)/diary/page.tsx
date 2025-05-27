@@ -53,6 +53,7 @@ export default function SettingsPage() {
 
         fetchDiaries();
     }, [token]);
+    console.log(diaries);
 
     return (
         <div className="p-8 max-w-5xl mx-auto">
