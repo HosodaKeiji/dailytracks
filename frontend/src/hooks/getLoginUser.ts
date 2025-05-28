@@ -25,7 +25,6 @@ export function useGetLoggedUser() {
             })
             .catch((err) => console.error("ユーザー取得エラー:", err));
     }, []);
-    console.log(user);
 
     return user;
 }

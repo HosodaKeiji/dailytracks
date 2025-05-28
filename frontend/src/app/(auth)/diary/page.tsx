@@ -18,7 +18,7 @@ const moodLabels: Record<number, string> = {
         5: "絶不調",
     };
 
-export default function SettingsPage() {
+export default function DiaryPage() {
     const logged_user = useGetLoggedUser();
     const router = useRouter()
     const [diaries, setDiaries] = useState<Diary[]>([]);
@@ -53,6 +53,7 @@ export default function SettingsPage() {
 
         fetchDiaries();
     }, [token]);
+    console.log(diaries);
 
     return (
         <div className="p-8 max-w-5xl mx-auto">

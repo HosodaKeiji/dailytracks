@@ -21,7 +21,6 @@ export default function LoginPage() {
 
         if (res.ok) {
             localStorage.setItem('token', data.token);
-            console.log(data);
             router.push('/home');
         } else {
             const errorText =

@@ -10,11 +10,6 @@ export default function DiaryCreatePage() {
     const [today, setToday] = useState('');
 
     useEffect(() => {
-        const storedToken = localStorage.getItem("token");
-        setToken(storedToken);
-    }, []);
-
-    useEffect(() => {
         // トークン取得
         const storedToken = localStorage.getItem("token");
         setToken(storedToken);
