@@ -77,7 +77,7 @@ export default function PdcaPage() {
                         >
                             {/* 編集ボタン */}
                             <button
-                                className="absolute top-3 right-3 text-xs text-white bg-[#00004d] hover:bg-[#ff0000] px-3 py-1 rounded transition"
+                                className="absolute top-3 right-3 text-sm text-white bg-[#00004d] hover:bg-[#ff0000] px-4 py-2 rounded transition"
                                 onClick={() => router.push(`/pdca_report/edit/${pdca.id}`)}
                             >
                                 編集
