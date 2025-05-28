@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function DiaryCreatePage() {
+export default function PdcaCreatePage() {
     const router = useRouter();
     const [weekDate, setWeekDate] = useState("");
     const [plan, setPlan] = useState("");

@@ -13,7 +13,7 @@ type Pdca = {
     feedback: string;
 }
 
-export default function SettingsPage() {
+export default function PdcaPage() {
     const logged_user = useGetLoggedUser();
     const router = useRouter()
     const [pdcas, setPdcas] = useState<Pdca[]>([]);
@@ -73,8 +73,15 @@ export default function SettingsPage() {
                     {pdcas.map((pdca) => (
                         <div
                             key={pdca.id}
-                            className="border rounded-xl p-5 shadow-md hover:shadow-lg transition bg-white text-left"
+                            className="relative border rounded-xl p-5 shadow-md hover:shadow-lg transition bg-white text-left"
                         >
+                            {/* 編集ボタン */}
+                            <button
+                                className="absolute top-3 right-3 text-xs text-white bg-[#00004d] hover:bg-[#ff0000] px-3 py-1 rounded transition"
+                                onClick={() => router.push(`/pdca_report/edit/${pdca.id}`)}
+                            >
+                                編集
+                            </button>
                             <p className="text-sm font-semibold text-[#ff0000] mb-2">
                                 {pdca.week_date}の週
                             </p>
