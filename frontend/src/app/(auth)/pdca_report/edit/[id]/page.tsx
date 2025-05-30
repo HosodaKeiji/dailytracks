@@ -78,7 +78,7 @@ export default function PdcaEditPage() {
 
     return (
         <div className="max-w-3xl mx-auto p-6">
-            <h1 className="text-3xl font-bold text-[#00004d] mb-6">PDCAレポート編集</h1>
+            <h1 className="text-3xl font-bold text-[#00004d] mb-6 text-center">PDCAレポート編集</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                 <label className="block font-semibold text-[#00004d]">Plan（計画）</label>

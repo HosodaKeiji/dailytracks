@@ -6,4 +6,5 @@ urlpatterns = [
     path('diary/', include('dailytracks.urls.diary')),
     path('pdca/', include('dailytracks.urls.pdca')),
     path('one_on_one/', include('dailytracks.urls.one_on_one')),
+    path('goal_setting/', include('dailytracks.urls.goal_setting')),
 ]

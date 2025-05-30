@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function OneOnOnePage() {
+export default function OneOnOneCreatePage() {
     const router = useRouter();
     const [date, setDate] = useState("");
     const [consultation, setConsultation] = useState("");
