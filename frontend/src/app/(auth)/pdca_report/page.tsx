@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useGetLoggedUser } from '@/hooks/getLoginUser';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type Pdca = {
     id: number;
@@ -18,6 +19,7 @@ export default function PdcaPage() {
     const router = useRouter()
     const [pdcas, setPdcas] = useState<Pdca[]>([]);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -41,6 +43,7 @@ export default function PdcaPage() {
                 } else {
                     throw new Error('PDCAレポートの取得に失敗しました');
                 }
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -48,7 +51,10 @@ export default function PdcaPage() {
 
         fetchPdcas();
     }, [token]);
-    console.log(pdcas);
+
+    if (loading) {
+            return <LoadingSpinner />;
+    }
 
     return (
         <div className="p-8 max-w-5xl mx-auto">

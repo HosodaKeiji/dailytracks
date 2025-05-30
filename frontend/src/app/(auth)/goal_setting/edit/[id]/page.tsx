@@ -90,18 +90,8 @@ export default function GoalSettingEditPage() {
         <div className="max-w-3xl mx-auto p-6">
             <h1 className="text-3xl font-bold text-[#00004d] mb-6 text-center">目標設定編集</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                    <label className="block font-semibold text-[#00004d]">対象月</label>
-                    <input
-                        type="month"
-                        value={goalSetting.month}
-                        onChange={(e) => setGoalSetting({ ...goalSetting, month: e.target.value })}
-                        className="w-full border p-3 rounded"
-                    />
-                </div>
-
                 {goalSetting.goal_actions.map((action, index) => (
-                    <div key={action.id} className="border-t pt-4 mt-4 space-y-3">
+                    <div key={action.id} className=" pt-4 mt-4 space-y-3">
                         <h2 className="text-xl font-semibold text-[#00004d]">目標 {index + 1}</h2>
 
                         <div>

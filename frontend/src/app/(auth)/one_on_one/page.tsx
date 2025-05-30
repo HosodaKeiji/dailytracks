@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useGetLoggedUser } from '@/hooks/getLoginUser';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type OneOnOne = {
     id: number;
@@ -17,6 +18,7 @@ export default function OneOnOnePage() {
     const router = useRouter()
     const [oneOnOnes, setOneOnOnes] = useState<OneOnOne[]>([]);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -40,6 +42,7 @@ export default function OneOnOnePage() {
                 } else {
                     throw new Error('1on1の取得に失敗しました');
                 }
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -47,7 +50,10 @@ export default function OneOnOnePage() {
 
         fetchOneOnOnes();
     }, [token]);
-    console.log(oneOnOnes);
+
+    if (loading) {
+            return <LoadingSpinner />;
+    }
 
     return (
         <div className="p-8 max-w-5xl mx-auto">
