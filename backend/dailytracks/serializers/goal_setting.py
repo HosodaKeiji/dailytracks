@@ -25,3 +25,22 @@ class GoalSettingSerializer(serializers.ModelSerializer):
         for pair_data in goal_actions_data:
             GoalActionPair.objects.create(goal_setting=goal_setting, **pair_data)
         return goal_setting
+    
+    def update(self, instance, validated_data):
+        goal_actions_data = validated_data.pop('goal_actions', None)
+
+        # GoalSettingのフィールドを更新
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        if goal_actions_data is not None:
+            # 既存のgoal_actionsをすべて削除
+            instance.goal_actions.all().delete()
+            # 新しいgoal_actionsを追加
+            for pair_data in goal_actions_data:
+                # goal_settingがあれば削除
+                pair_data.pop('goal_setting', None)
+                GoalActionPair.objects.create(goal_setting=instance, **pair_data)
+
+        return instance

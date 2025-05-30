@@ -77,7 +77,7 @@ export default function OneOnOneEditPage() {
 
     return (
         <div className="max-w-3xl mx-auto p-6">
-            <h1 className="text-3xl font-bold text-[#00004d] mb-6">1on1編集</h1>
+            <h1 className="text-3xl font-bold text-[#00004d] mb-6 text-center">1on1編集</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                 <label className="block font-semibold text-[#00004d]">Consultation（相談内容）</label>
