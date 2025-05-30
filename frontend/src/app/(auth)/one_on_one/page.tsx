@@ -88,12 +88,12 @@ export default function OneOnOnePage() {
                             </p>
 
                             <div className="mb-3">
-                                <h3 className="font-bold text-[#00004d]">Consultation</h3>
+                                <h3 className="font-bold text-[#00004d]">Consultation（相談内容）</h3>
                                 <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.consultation}</p>
                             </div>
 
                             <div className="mb-3">
-                                <h3 className="font-bold text-[#00004d]">LastAction</h3>
+                                <h3 className="font-bold text-[#00004d]">LastAction（前回から行動したこと）</h3>
                                 <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.last_action}</p>
                             </div>
 
@@ -103,7 +103,7 @@ export default function OneOnOnePage() {
                             </div>
 
                             <div className="mb-3">
-                                <h3 className="font-bold text-[#00004d]">NextAction</h3>
+                                <h3 className="font-bold text-[#00004d]">NextAction（次の行動）</h3>
                                 <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.next_action}</p>
                             </div>
                         </div>
