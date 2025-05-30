@@ -39,7 +39,7 @@ export default function PdcaPage() {
                     const data = await res.json();
                     setPdcas(data);
                 } else {
-                    throw new Error('日記の取得に失敗しました');
+                    throw new Error('PDCAレポートの取得に失敗しました');
                 }
             } catch (error) {
                 console.error(error);
@@ -51,11 +51,13 @@ export default function PdcaPage() {
     console.log(pdcas);
 
     return (
-        <div className="p-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-[#00004d] mb-4">
+        <div className="p-8 max-w-5xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#00004d] mb-4 text-center">
                 {logged_user ? `${logged_user.username} さんのPDCAレポート` : "PDCAレポート"}
             </h1>
-            <p className="text-lg text-gray-600">あなたのPDCAをここに残しましょう</p>
+            <p className="text-lg text-gray-600 mb-6 text-center">
+                あなたのPDCAをここに残しましょう
+            </p>
 
             <div className="flex justify-center mb-8">
                 <button

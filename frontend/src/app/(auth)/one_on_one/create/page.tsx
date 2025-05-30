@@ -2,13 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function PdcaCreatePage() {
+export default function OneOnOnePage() {
     const router = useRouter();
-    const [weekDate, setWeekDate] = useState("");
-    const [plan, setPlan] = useState("");
-    const [execution, setExecution] = useState("");
-    const [review, setReview] = useState("");
-    const [action, setAction] = useState("");
+    const [date, setDate] = useState("");
+    const [consultation, setConsultation] = useState("");
+    const [lastAction, setLastAction] = useState("");
     const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
@@ -21,26 +19,26 @@ export default function PdcaCreatePage() {
         e.preventDefault();
 
         if (!token) {
-            alert("ログイン情報がありません");
+            alert("ログイン情報がありません")
             return;
         }
 
         try {
-            const res = await fetch("http://localhost:8000/dailytracks/pdca/create/", {
+            const res = await fetch("http://localhost:8000/dailytracks/one_on_one/create/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Token ${token}`,
                 },
-                body: JSON.stringify({ week_date: weekDate, plan, execution, review, action }),
+                body: JSON.stringify({ date, consultation, last_action: lastAction }),
             });
 
             if (res.ok) {
-                alert("PDCAレポートを作成しました");
-                router.push("/pdca_report");
+                alert("1on1を作成しました");
+                router.push("/one_on_one");
             } else {
                 const errorData = await res.json();
-                alert("PDCAレポートの作成に失敗しました: " + JSON.stringify(errorData));
+                alert("1on1の作成に失敗しました: " + JSON.stringify(errorData));
             }
         } catch (error) {
             alert("エラーが発生しました");
@@ -50,68 +48,44 @@ export default function PdcaCreatePage() {
 
     return (
         <div className="max-w-xl mx-auto p-8">
-            <h1 className="text-3xl text-center font-bold mb-6 text-[#00004d]">新しいPDCAレポートを作成</h1>
+            <h1 className="text-3xl text-center font-bold mb-6 text-[#00004d]">新しい1on1を作成</h1>
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 {/* 日付の指定 */}
                 <div>
                     <label htmlFor="week_date" className="block font-semibold mb-2 text-[#00004d]">
-                        週の開始日
+                        1on1実施日
                     </label>
                     <input
                         type="date"
-                        id="week_date"
-                        value={weekDate}
-                        onChange={(e) => setWeekDate(e.target.value)}
+                        id="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
                         required
                     />
                 </div>
                 {/* 内容入力 */}
                 <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Plan（計画）</label>
+                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Consultation</label>
                     <textarea
                         id="content"
                         rows={6}
                         maxLength={1000}
-                        value={plan}
-                        onChange={e => setPlan(e.target.value)}
+                        value={consultation}
+                        onChange={e => setConsultation(e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Do（実行）</label>
+                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">LastAction</label>
                     <textarea
                         id="content"
                         rows={6}
                         maxLength={1000}
-                        value={execution}
-                        onChange={e => setExecution(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Check（評価）</label>
-                    <textarea
-                        id="content"
-                        rows={6}
-                        maxLength={1000}
-                        value={review}
-                        onChange={e => setReview(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Action（改善）</label>
-                    <textarea
-                        id="content"
-                        rows={6}
-                        maxLength={1000}
-                        value={action}
-                        onChange={e => setAction(e.target.value)}
+                        value={lastAction}
+                        onChange={e => setLastAction(e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
                         required
                     />
@@ -129,7 +103,7 @@ export default function PdcaCreatePage() {
             </form>
             <button
                 type="button"
-                onClick={() => router.push('/pdca_report')}
+                onClick={() => router.push('/one_on_one')}
                 className="bg-[#00004d] text-white px-4 py-2 text-sm rounded hover:bg-[#ff0000] hover:text-white transition"
             >
                 戻る
