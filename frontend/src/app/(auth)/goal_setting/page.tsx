@@ -2,6 +2,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useGetLoggedUser } from '@/hooks/getLoginUser';
+import LoadingSpinner from '@/components/LoadingSpinner';
+
 type GoalAction = {
     id: number;
     goal: string;
@@ -20,6 +22,7 @@ export default function SettingsPage() {
     const router = useRouter();
     const [goalSettings, setGoalSettings] = useState<GoalSetting[]>([]);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -43,6 +46,7 @@ export default function SettingsPage() {
                 } else {
                     throw new Error('目標設定の取得に失敗しました');
                 }
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -50,7 +54,10 @@ export default function SettingsPage() {
 
         fetchGoalSettings();
     }, [token]);
-    console.log(goalSettings);
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <div className="p-8 max-w-5xl mx-auto">

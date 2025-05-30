@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useGetLoggedUser } from '@/hooks/getLoginUser';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type Diary = {
     id: number;
@@ -23,6 +24,7 @@ export default function DiaryPage() {
     const router = useRouter()
     const [diaries, setDiaries] = useState<Diary[]>([]);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -46,6 +48,7 @@ export default function DiaryPage() {
                 } else {
                     throw new Error('日記の取得に失敗しました');
                 }
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -53,7 +56,10 @@ export default function DiaryPage() {
 
         fetchDiaries();
     }, [token]);
-    console.log(diaries);
+
+    if (loading) {
+            return <LoadingSpinner />;
+    }
 
     return (
         <div className="p-8 max-w-5xl mx-auto">
