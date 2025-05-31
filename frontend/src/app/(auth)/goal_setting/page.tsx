@@ -105,21 +105,35 @@ export default function SettingsPage() {
                                 <table className="w-full table-auto border border-gray-300 text-sm mt-2">
                                     <thead className="bg-gray-100 text-[#00004d]">
                                         <tr>
-                                            <th className="border px-4 py-2">#</th>
-                                            <th className="border px-4 py-2">目標</th>
-                                            <th className="border px-4 py-2">取り組み</th>
-                                            <th className="border px-4 py-2">結果</th>
-                                            <th className="border px-4 py-2">フィードバック</th>
+                                            <th className="border border-[#00004d] px-4 py-2">#</th>
+                                            <th className="border border-[#00004d] px-4 py-2">目標</th>
+                                            <th className="border border-[#00004d] px-4 py-2">取り組み</th>
+                                            <th className="border border-[#00004d] px-4 py-2">結果</th>
+                                            <th className="border border-[#00004d] px-4 py-2">フィードバック</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {goalSetting.goal_actions.map((ga, index) => (
                                             <tr key={ga.id} className="text-gray-800">
-                                                <td className="border px-4 py-2 text-center">{index + 1}</td>
-                                                <td className="border px-4 py-2 whitespace-pre-wrap">{ga.goal}</td>
-                                                <td className="border px-4 py-2 whitespace-pre-wrap">{ga.action}</td>
-                                                <td className="border px-4 py-2 whitespace-pre-wrap">{ga.result || '-'}</td>
-                                                <td className="border px-4 py-2 whitespace-pre-wrap">{ga.feedback || '-'}</td>
+                                            <td className="border border-[#00004d] px-4 py-2 text-center">{index + 1}</td>
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">{ga.goal}</td>
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">{ga.action}</td>
+
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">
+                                                {ga.result ? (
+                                                ga.result
+                                                ) : (
+                                                <span className="text-red-600">未記入</span>
+                                                )}
+                                            </td>
+
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">
+                                                {ga.feedback ? (
+                                                ga.feedback
+                                                ) : (
+                                                <span className="text-red-600">未記入</span>
+                                                )}
+                                            </td>
                                             </tr>
                                         ))}
                                     </tbody>

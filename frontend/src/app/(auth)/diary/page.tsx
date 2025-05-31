@@ -86,7 +86,7 @@ export default function DiaryPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {diaries.map((diary) => (
                         <div key={diary.id} className="border rounded-xl p-5 shadow-md hover:shadow-lg transition bg-white">
-                            <p className="text-sm text-[#00004d] mb-1">{diary.created_at}</p>
+                            <p className="text-sm text-[#ff0000] mb-1">{diary.created_at}</p>
                             <p className="font-semibold text-[#00004d]">気分: {moodLabels[diary.mood]}</p>
                             <p className="mt-3 whitespace-pre-wrap">{diary.content}</p>
                         </div>
