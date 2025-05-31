@@ -105,12 +105,20 @@ export default function OneOnOnePage() {
 
                             <div className="mb-3">
                                 <h3 className="font-bold text-[#00004d]">Feedback</h3>
-                                <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.feedback}</p>
+                                {oneOnOne.feedback ? (
+                                    <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.feedback}</p>
+                                ) : (
+                                    <p className="text-red-600 mt-1">未記入</p>
+                                )}
                             </div>
 
                             <div className="mb-3">
                                 <h3 className="font-bold text-[#00004d]">NextAction（次の行動）</h3>
-                                <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.next_action}</p>
+                                {oneOnOne.feedback ? (
+                                    <p className="whitespace-pre-wrap text-gray-800 mt-1">{oneOnOne.next_action}</p>
+                                ) : (
+                                    <p className="text-red-600 mt-1">未記入</p>
+                                )}
                             </div>
                         </div>
                     ))}
