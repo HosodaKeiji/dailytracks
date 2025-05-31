@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type GoalAction = {
     id: number;
@@ -83,7 +84,7 @@ export default function GoalSettingEditPage() {
     };
 
     if (goalSetting === null) {
-        return <p className="text-center mt-10">読み込み中...</p>;
+        return <LoadingSpinner />;
     }
 
     return (

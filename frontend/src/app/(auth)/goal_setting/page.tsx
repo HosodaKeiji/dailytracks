@@ -9,6 +9,8 @@ type GoalAction = {
     goal: string;
     action: string;
     goal_setting: number;
+    result: string;
+    feedback: string;
 };
 
 type GoalSetting = {
@@ -80,7 +82,7 @@ export default function SettingsPage() {
             {goalSettings.length === 0 ? (
                 <p className="text-center text-gray-500">まだ目標設定がありません。</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                     {goalSettings.map((goalSetting) => (
                         <div
                             key={goalSetting.id}
@@ -93,19 +95,50 @@ export default function SettingsPage() {
                                 編集
                             </button>
 
-                            <p className="text-sm font-semibold text-[#ff0000] mb-3">
+                            <p className="text-sm font-semibold text-[#ff0000] mt-3 mb-3">
                                 対象月：{goalSetting.month}
                             </p>
 
-                            {goalSetting.goal_actions.map((ga, index) => (
-                                <div key={ga.id} className="mb-4">
-                                    <h3 className="font-bold text-[#00004d]">目標 {index + 1}</h3>
-                                    <p className="whitespace-pre-wrap text-gray-800 mt-1 mb-2">{ga.goal}</p>
+                            {goalSetting.goal_actions.length === 0 ? (
+                                <p className="text-gray-500">この月の目標設定はまだありません。</p>
+                            ) : (
+                                <table className="w-full table-auto border border-gray-300 text-sm mt-2">
+                                    <thead className="bg-gray-100 text-[#00004d]">
+                                        <tr>
+                                            <th className="border border-[#00004d] px-4 py-2">#</th>
+                                            <th className="border border-[#00004d] px-4 py-2">目標</th>
+                                            <th className="border border-[#00004d] px-4 py-2">取り組み</th>
+                                            <th className="border border-[#00004d] px-4 py-2">結果</th>
+                                            <th className="border border-[#00004d] px-4 py-2">フィードバック</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {goalSetting.goal_actions.map((ga, index) => (
+                                            <tr key={ga.id} className="text-gray-800">
+                                            <td className="border border-[#00004d] px-4 py-2 text-center">{index + 1}</td>
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">{ga.goal}</td>
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">{ga.action}</td>
 
-                                    <h3 className="font-bold text-[#00004d]">取り組み {index + 1}</h3>
-                                    <p className="whitespace-pre-wrap text-gray-800 mt-1">{ga.action}</p>
-                                </div>
-                            ))}
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">
+                                                {ga.result ? (
+                                                ga.result
+                                                ) : (
+                                                <span className="text-red-600">未記入</span>
+                                                )}
+                                            </td>
+
+                                            <td className="border border-[#00004d] px-4 py-2 whitespace-pre-wrap">
+                                                {ga.feedback ? (
+                                                ga.feedback
+                                                ) : (
+                                                <span className="text-red-600">未記入</span>
+                                                )}
+                                            </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
                         </div>
                     ))}
                 </div>
