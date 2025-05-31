@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type OneOnOne = {
     id: number;
@@ -72,7 +73,7 @@ export default function OneOnOneEditPage() {
     };
 
     if (oneOnOne === null) {
-        return <p className="text-center mt-10">読み込み中...</p>;
+        return <LoadingSpinner />;
     }
 
     return (
