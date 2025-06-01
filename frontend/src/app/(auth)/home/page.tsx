@@ -83,7 +83,10 @@ export default function HomePage() {
                     },
                 });
 
-                if(res.ok) {
+                if (res.status === 404) {
+                    // データが存在しないだけなのでエラーにしない
+                    setLatestDiary(null);
+                } else if (res.ok) {
                     const data = await res.json();
                     setLatestDiary(data);
                 } else {
@@ -109,7 +112,10 @@ export default function HomePage() {
                     },
                 });
 
-                if(res.ok) {
+                if (res.status === 404) {
+                    // データが存在しないだけなのでエラーにしない
+                    setLatestPdca(null);
+                } else if (res.ok) {
                     const data = await res.json();
                     setLatestPdca(data);
                 } else {
@@ -135,7 +141,10 @@ export default function HomePage() {
                     },
                 });
 
-                if(res.ok) {
+                if (res.status === 404) {
+                    // データが存在しないだけなのでエラーにしない
+                    setLatestOneOnOne(null);
+                } else if (res.ok) {
                     const data = await res.json();
                     setLatestOneOnOne(data);
                 } else {
@@ -161,7 +170,10 @@ export default function HomePage() {
                     },
                 });
 
-                if(res.ok) {
+                if (res.status === 404) {
+                    // データが存在しないだけなのでエラーにしない
+                    setLatestGoalSetting(null);
+                } else if (res.ok) {
                     const data = await res.json();
                     setLatestGoalSetting(data);
                 } else {
@@ -230,12 +242,20 @@ export default function HomePage() {
 
                     <div className="mb-3">
                         <h3 className="font-bold text-[#00004d]">Check（評価）</h3>
-                        <p className="whitespace-pre-wrap text-gray-800 mt-1">{latestPdca.review}</p>
+                        {latestPdca.review ? (
+                            <p className="whitespace-pre-wrap text-gray-800 mt-1">{latestPdca.review}</p>
+                        ) : (
+                            <p className="text-red-600 mt-1">未記入</p>
+                        )}
                     </div>
 
                     <div className="mb-3">
                         <h3 className="font-bold text-[#00004d]">Action（改善）</h3>
-                        <p className="whitespace-pre-wrap text-gray-800 mt-1">{latestPdca.action}</p>
+                        {latestPdca.action ? (
+                            <p className="whitespace-pre-wrap text-gray-800 mt-1">{latestPdca.action}</p>
+                        ) : (
+                            <p className="text-red-600 mt-1">未記入</p>
+                        )}
                     </div>
 
                     <div className="mb-3">

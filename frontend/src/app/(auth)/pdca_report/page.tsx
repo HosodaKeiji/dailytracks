@@ -106,12 +106,20 @@ export default function PdcaPage() {
 
                             <div className="mb-3">
                                 <h3 className="font-bold text-[#00004d]">Check（評価）</h3>
-                                <p className="whitespace-pre-wrap text-gray-800 mt-1">{pdca.review}</p>
+                                {pdca.review ? (
+                                    <p className="whitespace-pre-wrap text-gray-800 mt-1">{pdca.review}</p>
+                                ) : (
+                                    <p className="text-red-600 mt-1">未記入</p>
+                                )}
                             </div>
 
                             <div className="mb-3">
                                 <h3 className="font-bold text-[#00004d]">Action（改善）</h3>
-                                <p className="whitespace-pre-wrap text-gray-800 mt-1">{pdca.action}</p>
+                                {pdca.action ? (
+                                    <p className="whitespace-pre-wrap text-gray-800 mt-1">{pdca.action}</p>
+                                ) : (
+                                    <p className="text-red-600 mt-1">未記入</p>
+                                )}
                             </div>
 
                             <div className="mb-3">
