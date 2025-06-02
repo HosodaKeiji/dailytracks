@@ -7,8 +7,6 @@ export default function PdcaCreatePage() {
     const [weekDate, setWeekDate] = useState("");
     const [plan, setPlan] = useState("");
     const [execution, setExecution] = useState("");
-    const [review, setReview] = useState("");
-    const [action, setAction] = useState("");
     const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
@@ -32,7 +30,7 @@ export default function PdcaCreatePage() {
                     "Content-Type": "application/json",
                     "Authorization": `Token ${token}`,
                 },
-                body: JSON.stringify({ week_date: weekDate, plan, execution, review, action }),
+                body: JSON.stringify({ week_date: weekDate, plan, execution }),
             });
 
             if (res.ok) {
@@ -88,30 +86,6 @@ export default function PdcaCreatePage() {
                         maxLength={1000}
                         value={execution}
                         onChange={e => setExecution(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Check（評価）</label>
-                    <textarea
-                        id="content"
-                        rows={6}
-                        maxLength={1000}
-                        value={review}
-                        onChange={e => setReview(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" className="block font-semibold mb-2 text-[#00004d]">Action（改善）</label>
-                    <textarea
-                        id="content"
-                        rows={6}
-                        maxLength={1000}
-                        value={action}
-                        onChange={e => setAction(e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#00004d] transition"
                         required
                     />
