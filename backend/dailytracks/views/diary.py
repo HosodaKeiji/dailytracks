@@ -17,7 +17,7 @@ class DiaryCreateView(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
 class DiaryListView(APIView):
-    Permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         diaries = Diary.objects.filter(user = request.user).order_by("-created_at")
@@ -25,7 +25,7 @@ class DiaryListView(APIView):
         return Response(serializer.data)
 
 class DiaryLatestView(APIView):
-    permission = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         latest_diary = Diary.objects.filter(user = request.user).order_by("-created_at").first()

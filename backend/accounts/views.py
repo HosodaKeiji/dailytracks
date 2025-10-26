@@ -27,6 +27,7 @@ class LoginView(APIView):
 class SignupView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = SignupSerializer
+    permission_classes = [AllowAny] #ユーザ登録なので認証不要に
 
 class UsernameChangeView(APIView):
     def post(self, request):
