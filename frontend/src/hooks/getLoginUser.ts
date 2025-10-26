@@ -1,5 +1,4 @@
-// hooks/useCurrentUser.ts
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type User = {
     id: number;
@@ -16,11 +15,11 @@ export function useGetLoggedUser() {
 
         fetch("http://localhost:8000/dailytracks/user/me/", {
             headers: {
-                "Authorization": `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 setUser(data);
             })
             .catch((err) => console.error("ユーザー取得エラー:", err));

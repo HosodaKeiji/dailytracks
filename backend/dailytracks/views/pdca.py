@@ -11,7 +11,7 @@ class PdcaCreateView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = PdcaSerializer(data = request.data)
+        serializer = PdcaSerializer(data = request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save(user = request.user)
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -26,7 +26,7 @@ class PdcaListView(APIView):
         return Response(serializer.data)
 
 class PdcaLatestView(APIView):
-    permission = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         latest_pdca = Pdca.objects.filter(user = request.user).order_by("-week_date").first()
@@ -49,7 +49,7 @@ class PdcaDetailView(APIView):
 
     def put(self, request, pk):
         pdca = self.get_object(pk, request.user)
-        serializer = PdcaSerializer(pdca, data=request.data)
+        serializer = PdcaSerializer(pdca, data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

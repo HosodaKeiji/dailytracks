@@ -6,6 +6,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from dailytracks.serializers.one_on_one import OneOnOneSerializer
 from dailytracks.models.one_on_one import OneOnOne
+from django.db import IntegrityError
 
 class OneOnOneCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -13,8 +14,14 @@ class OneOnOneCreateView(APIView):
     def post(self, request):
         serializer = OneOnOneSerializer(data = request.data)
         if serializer.is_valid():
-            serializer.save(user = request.user)
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
+            try:
+                serializer.save(user = request.user)
+                return Response(serializer.data, status = status.HTTP_201_CREATED)
+            except IntegrityError:
+                    return Response(
+                        {"non_field_errors": ["同じ日付のOneOnOneは既に存在します。"]},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
 class OneOnOneListView(APIView):

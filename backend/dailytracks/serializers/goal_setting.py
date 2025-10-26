@@ -19,6 +19,18 @@ class GoalSettingSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["id", "created_at", "updated_at", "user"]
 
+    def validate(self, attrs):
+        """ユーザごとのmonth重複を防ぐ"""
+        user = self.context["request"].user if "request" in self.context else None
+        month = attrs.get("month")
+
+        if user and GoalSetting.objects.filter(user=user, month=month).exists():
+            raise serializers.ValidationError(
+                {"month": ["この月の目標設定は既に存在します。"]}
+            )
+        
+        return attrs
+
     def create(self, validated_data):
         goal_actions_data = validated_data.pop("goal_actions", [])
         goal_setting = GoalSetting.objects.create(**validated_data)
